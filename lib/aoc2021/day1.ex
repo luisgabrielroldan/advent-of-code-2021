@@ -5,41 +5,39 @@ defmodule Aoc2021.Day1 do
     fetch_input!(1, 1)
     |> Enum.map(&Integer.parse/1)
     |> Enum.map(&elem(&1, 0))
-    |> count_increases_part1()
+    |> count_increases()
   end
 
   def part2 do
     fetch_input!(1, 1)
     |> Enum.map(&Integer.parse/1)
     |> Enum.map(&elem(&1, 0))
-    |> count_increases_part2()
+    |> windowize()
+    |> count_increases()
   end
 
-  defp count_increases_part2(list, last \\ nil, acc \\ 0)
+  defp windowize(list, acc \\ [])
 
-  defp count_increases_part2([_, _], _last, acc),
+  defp windowize([_, _], acc),
+    do: Enum.reverse(acc)
+
+  defp windowize([a, b, c | rest], acc),
+    do: windowize([b, c] ++ rest, [a + b + c | acc])
+
+  defp windowize([a, b, c | rest], acc),
+    do: windowize([b, c] ++ rest, [a + b + c | acc])
+
+  defp count_increases(list, last \\ nil, acc \\ 0)
+
+  defp count_increases([], _last, acc),
     do: acc
 
-  defp count_increases_part2([a, b, c | rest], nil, acc),
-    do: count_increases_part2([b, c] ++ rest, a + b + c, acc)
+  defp count_increases([v | rest], nil, acc),
+    do: count_increases(rest, v, acc)
 
-  defp count_increases_part2([a, b, c | rest], last, acc) when a + b + c > last,
-    do: count_increases_part2([b, c] ++ rest, a + b + c, acc + 1)
+  defp count_increases([v | rest], last, acc) when v > last,
+    do: count_increases(rest, v, acc + 1)
 
-  defp count_increases_part2([a, b, c | rest], _last, acc),
-    do: count_increases_part2([b, c] ++ rest, a + b + c, acc)
-
-  defp count_increases_part1(list, last \\ nil, acc \\ 0)
-
-  defp count_increases_part1([], _last, acc),
-    do: acc
-
-  defp count_increases_part1([v | rest], nil, acc),
-    do: count_increases_part1(rest, v, acc)
-
-  defp count_increases_part1([v | rest], last, acc) when v > last,
-    do: count_increases_part1(rest, v, acc + 1)
-
-  defp count_increases_part1([v | rest], _last, acc),
-    do: count_increases_part1(rest, v, acc)
+  defp count_increases([v | rest], _last, acc),
+    do: count_increases(rest, v, acc)
 end
