@@ -24,9 +24,6 @@ defmodule Aoc2021.Day1 do
   defp windowize([a, b, c | rest], acc),
     do: windowize([b, c] ++ rest, [a + b + c | acc])
 
-  defp windowize([a, b, c | rest], acc),
-    do: windowize([b, c] ++ rest, [a + b + c | acc])
-
   defp count_increases(list, last \\ nil, acc \\ 0)
 
   defp count_increases([], _last, acc),
