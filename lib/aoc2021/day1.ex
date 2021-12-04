@@ -2,14 +2,14 @@ defmodule Aoc2021.Day1 do
   use Aoc2021
 
   def part1 do
-    fetch_input!(1, 1)
+    fetch_input!(1)
     |> Enum.map(&Integer.parse/1)
     |> Enum.map(&elem(&1, 0))
     |> count_increases()
   end
 
   def part2 do
-    fetch_input!(1, 1)
+    fetch_input!(1)
     |> Enum.map(&Integer.parse/1)
     |> Enum.map(&elem(&1, 0))
     |> windowize()

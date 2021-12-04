@@ -2,7 +2,7 @@ defmodule Aoc2021.Day3 do
   use Aoc2021
 
   def part1 do
-    input = fetch_input!(3, 1)
+    input = fetch_input!(3)
     gamma_rate = calc_gamma_rate(input)
     epsilon_rate = calc_epsilon_rate(input)
 
@@ -10,7 +10,7 @@ defmodule Aoc2021.Day3 do
   end
 
   def part2 do
-    input = fetch_input!(3, 1)
+    input = fetch_input!(3)
     calc_oxygen_rating(input) * calc_scrubber_rating(input)
   end
 

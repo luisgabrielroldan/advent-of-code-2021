@@ -2,13 +2,13 @@ defmodule Aoc2021.Day2 do
   use Aoc2021
 
   def part1 do
-    fetch_input!(2, 1)
+    fetch_input!(2)
     |> parse()
     |> navigate(0, 0)
   end
 
   def part2 do
-    fetch_input!(2, 1)
+    fetch_input!(2)
     |> parse()
     |> navigate_with_aim(0, 0, 0)
   end

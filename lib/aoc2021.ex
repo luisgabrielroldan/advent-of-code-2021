@@ -9,13 +9,13 @@ defmodule Aoc2021 do
     end
   end
 
-  def fetch_input!(day, part, parser \\ :lines) do
+  def fetch_input!(day, parser \\ :lines) do
     day = String.pad_leading("#{day}", 2, "0")
 
     [
       :code.priv_dir(:aoc2021),
       "inputs",
-      "day_#{day}_#{part}.txt"
+      "day_#{day}.txt"
     ]
     |> Path.join()
     |> File.read!()
